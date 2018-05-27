@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 import collections
 import functools
 import logging
+import sys
 import traceback
 from builtins import map
 from builtins import object
@@ -51,8 +52,8 @@ class BraceMessage(object):
         except Exception:
             log.error(
                 'BraceMessage string formatting failed. '
-                'Using representation instead.\n{0!r}'.format(
-                    ''.join(traceback.format_stack()),
+                'Using representation instead.\n{0}'.format(
+                    ''.join(traceback.format_stack(sys._getframe(2))),
                 )
             )
             return repr(self)
